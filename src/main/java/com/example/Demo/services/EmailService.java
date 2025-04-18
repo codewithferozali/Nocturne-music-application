@@ -12,55 +12,7 @@ import jakarta.mail.Transport;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 
-//@Service
-//public class EmailService {
-//	public boolean sendEmail(String subject,String message,String to) {
-//		boolean f=false;
-//		
-//		String from="ferozalircr@gmail.com";
-//		String host="smtp.gmail.com";
-//		 Properties properties=System.getProperties();
-//		 System.out.println("properties"+properties);
-//		 
-//		 //host set
-//		 properties.put("mail.smtp.host", host);
-//		 properties.put("mail.smtp.port", "465");
-//		 properties.put("mail.smtp.ssl.enable", "true");
-//		 properties.put("mail.smtp.ssl.auth", "true");
-//		 //step1 :to get the session object
-//		 
-//		 Session session=Session.getInstance(properties, new Authenticator() {
-//
-//			@Override
-//			protected PasswordAuthentication getPasswordAuthentication() {
-//				
-//				return new PasswordAuthentication("ferozalircr@gmail.com", "maun sgev rxea pvik");
-//			}
-//			 
-//		});
-//		 session.setDebug(true);
-//		 //step 2:composite the message
-//		MimeMessage m=new MimeMessage(session);
-//		try {
-//			m.setFrom(from);
-//			m.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-//			m.setSubject(subject);
-//			m.setText(message);
-//			
-//			Transport.send(m);
-//			System.out.println("send success.......");
-//			f=true;
-//		}
-//		catch(Exception e) {
-//			e.printStackTrace();
-//		}
-//		return f;
-//		 
-//		
-//	}
-//	
-//
-//}
+
 
 
 
@@ -70,7 +22,7 @@ public class EmailService {
         boolean f = false;
         
         // Sender's email
-        String from = "ferozalircr@gmail.com";
+        String from = "u r email id";
         
         // Configure properties
         Properties props = new Properties();
@@ -83,7 +35,7 @@ public class EmailService {
         Session session = Session.getInstance(props, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(from, "maun sgev rxea pvik");
+                return new PasswordAuthentication(from, "app password");
             }
         });
         

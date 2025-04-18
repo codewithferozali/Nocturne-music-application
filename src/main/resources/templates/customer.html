@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to TuneHub</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="customer.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6a11cb;
+            --secondary-color: #2575fc;
+            --accent-color: #ff6b6b;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 4rem 0;
+            margin-bottom: 2rem;
+            border-radius: 0 0 20px 20px;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .cta-button {
+            padding: 0.8rem 2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            background-color: var(--accent-color);
+            border: none;
+        }
+        
+        .cta-button:hover {
+            background-color: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .navbar {
+            background-color: var(--primary-color) !important;
+        }
+        
+        .contact-info {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .social-icon {
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">TuneHub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/exploreSongs">Explore Songs</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-4">Welcome to TuneHub</h1>
+            <p class="lead mb-4">Your ultimate music streaming destination with millions of songs at your fingertips</p>
+            <a href="/exploreSongs" class="btn btn-light btn-lg cta-button">Explore Songs Now</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="container mb-5">
+        <div class="row text-center">
+            <div class="col-md-4 mb-4">
+                <div class="feature-icon">
+                    <i class="bi bi-music-note-list"></i>
+                </div>
+                <h3>Curated Playlists</h3>
+                <p>Discover handcrafted playlists for every mood and occasion, updated weekly by our music experts.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-icon">
+                    <i class="bi bi-headphones"></i>
+                </div>
+                <h3>High Quality Audio</h3>
+                <p>Experience crystal clear sound with our premium streaming quality across all your devices.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-icon">
+                    <i class="bi bi-lightning-charge"></i>
+                </div>
+                <h3>Smart Recommendations</h3>
+                <p>Our advanced algorithm learns your taste to suggest songs you'll love before you know it.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container mb-5">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="contact-info text-center">
+                    <h2 class="mb-4">Contact Us</h2>
+                    <div class="mb-3">
+                        <i class="bi bi-telephone-fill me-2"></i>
+                        <a href="tel:8088623193" class="text-decoration-none">+91 8088623193</a>
+                    </div>
+                    <div class="mb-3">
+                        <i class="bi bi-envelope-fill me-2"></i>
+                        <a href="mailto:ferozalircr@gmail.com" class="text-decoration-none">ferozalircr@gmail.com</a>
+                    </div>
+                    <div class="social-links mt-4">
+                        <a href="https://www.linkedin.com/in/feroz-ali-5b12b632b/" class="text-decoration-none text-dark social-icon">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                        <a href="https://www.instagram.com/its_me_feroz_ali/" class="text-decoration-none text-dark social-icon">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="#" class="text-decoration-none text-dark social-icon">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                        <a href="#" class="text-decoration-none text-dark social-icon">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>About TuneHub</h5>
+                    <p>TuneHub is a premium music streaming platform dedicated to bringing you the best music experience with personalized recommendations and high-quality audio.</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white text-decoration-none">Home</a></li>
+                        <li><a href="/exploreSongs" class="text-white text-decoration-none">Explore Songs</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Playlists</a></li>
+                        <li><a href="#contact" class="text-white text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Connect With Us</h5>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/feroz-ali-5b12b632b/" class="text-white me-2"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://www.instagram.com/its_me_feroz_ali/" class="text-white me-2"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white me-2"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-facebook"></i></a>
+                    </div>
+                    <div class="mt-2">
+                        <small>Phone: +91 8088623193</small><br>
+                        <small>Email: ferozalircr@gmail.com</small>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">© 2023 TuneHub - All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</body>
+</html>

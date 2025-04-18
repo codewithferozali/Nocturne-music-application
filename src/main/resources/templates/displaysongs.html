@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Music Library</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4895ef;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #4cc9f0;
+            --danger-color: #f72585;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 2rem;
+            color: var(--light-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: rgba(33, 37, 41, 0.9);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            animation: fadeIn 0.5s ease-out;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--accent-color);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .music-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 1.5rem;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .music-table thead {
+            background: var(--primary-color);
+            color: white;
+            position: sticky;
+            top: 0;
+        }
+
+        .music-table th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        .music-table tbody tr {
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .music-table tbody tr:hover {
+            background-color: rgba(67, 97, 238, 0.2);
+            transform: translateX(5px);
+        }
+
+        .music-table td {
+            padding: 1rem;
+            vertical-align: middle;
+            color: var(--light-color);
+        }
+
+        .music-table tbody tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .album-cover {
+            width: 60px;
+            height: 60px;
+            border-radius: 6px;
+            object-fit: cover;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+
+        .album-cover:hover {
+            transform: scale(1.05);
+        }
+
+        .music-player-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .play-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .play-btn:hover {
+            background: var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        .play-btn i {
+            font-size: 14px;
+        }
+
+        .progress-container {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .progress-time {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .progress-bar {
+            flex-grow: 1;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--accent-color);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-control:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 0.25rem rgba(72, 149, 239, 0.25);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .music-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .search-container {
+                flex-direction: column;
+            }
+            
+            .music-player-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .progress-container {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Music Library</h1>
+        
+        <div class="search-container mb-4">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search songs...">
+                <button class="btn btn-primary">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+        </div>
+        
+        <div class="table-responsive">
+            <table class="music-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Artist</th>
+                        <th>Genre</th>
+                        <th>Player</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="songslist : ${songslist}">
+                        <td th:text="${songslist.name}"></td>
+                        <td th:text="${songslist.artist}"></td>
+                        <td th:text="${songslist.genre}"></td>
+                        <td>
+                            <div class="music-player-container">
+                                <button class="play-btn" onclick="togglePlay(this)">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <audio class="audio-element" th:src="${songslist.link}" type="audio/mpeg"></audio>
+                                <div class="progress-container">
+                                    <span class="progress-time current-time">0:00</span>
+                                    <div class="progress-bar" onclick="seek(event)">
+                                        <div class="progress"></div>
+                                    </div>
+                                    <span class="progress-time duration">0:00</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn btn-primary btn-sm">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                                <button class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Music player functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all audio elements
+            const audioElements = document.querySelectorAll('.audio-element');
+            
+            audioElements.forEach(audio => {
+                // Set up duration display
+                audio.addEventListener('loadedmetadata', function() {
+                    const durationElement = audio.closest('.music-player-container').querySelector('.duration');
+                    durationElement.textContent = formatTime(audio.duration);
+                });
+                
+                // Update progress bar and current time
+                audio.addEventListener('timeupdate', function() {
+                    const container = audio.closest('.music-player-container');
+                    const progress = container.querySelector('.progress');
+                    const currentTimeElement = container.querySelector('.current-time');
+                    
+                    const percent = (audio.currentTime / audio.duration) * 100;
+                    progress.style.width = percent + '%';
+                    currentTimeElement.textContent = formatTime(audio.currentTime);
+                });
+                
+                // Reset player when song ends
+                audio.addEventListener('ended', function() {
+                    const container = audio.closest('.music-player-container');
+                    const playBtn = container.querySelector('.play-btn');
+                    playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                });
+            });
+        });
+        
+        function togglePlay(button) {
+            const container = button.closest('.music-player-container');
+            const audio = container.querySelector('.audio-element');
+            const isPlaying = !audio.paused;
+            
+            if (isPlaying) {
+                audio.pause();
+                button.innerHTML = '<i class="fas fa-play"></i>';
+            } else {
+                // Pause all other audio elements
+                document.querySelectorAll('.audio-element').forEach(a => {
+                    if (a !== audio) {
+                        a.pause();
+                        a.closest('.music-player-container').querySelector('.play-btn').innerHTML = '<i class="fas fa-play"></i>';
+                    }
+                });
+                
+                audio.play();
+                button.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+        }
+        
+        function seek(event) {
+            const progressBar = event.currentTarget;
+            const container = progressBar.closest('.music-player-container');
+            const audio = container.querySelector('.audio-element');
+            const progress = container.querySelector('.progress');
+            
+            const percent = event.offsetX / progressBar.offsetWidth;
+            audio.currentTime = percent * audio.duration;
+            progress.style.width = (percent * 100) + '%';
+        }
+        
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+    </script>
+</body>
+</html>

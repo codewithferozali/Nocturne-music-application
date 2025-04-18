@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music App</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('indexmus.webp'); /* Add your background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        /* Container Styling */
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Heading Styling */
+        h1 {
+            font-size: 3.5rem; /* Large font size */
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #ff6f61; /* Vibrant coral color */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for better visibility */
+        }
+
+        /* Paragraph Styling */
+        p {
+            font-size: 1.8rem; /* Medium font size */
+            margin-bottom: 40px;
+            color: #ffcc5c; /* Vibrant golden color */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for better visibility */
+        }
+
+        /* Buttons Styling */
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Space between buttons */
+        }
+
+        .btn {
+            padding: 15px 30px; /* Button size */
+            font-size: 1.2rem; /* Font size */
+            color: white;
+            text-decoration: none;
+            border-radius: 10px; /* Rounded corners */
+            transition: all 0.3s ease; /* Smooth hover transition */
+            border: 2px solid transparent; /* Border for hover effect */
+        }
+
+        /* Login Button Styling */
+        .login {
+            background: #3498db; /* Blue color */
+        }
+
+        .login:hover {
+            background: transparent;
+            border-color: #3498db; /* Blue border on hover */
+            transform: scale(1.1); /* Slightly enlarge on hover */
+        }
+
+        /* Sign Up Button Styling */
+        .signup {
+            background: #2ecc71; /* Green color */
+        }
+
+        .signup:hover {
+            background: transparent;
+            border-color: #2ecc71; /* Green border on hover */
+            transform: scale(1.1); /* Slightly enlarge on hover */
+        }
+        
+        .fixed-bottom {
+    position: fixed;
+    bottom: 20px; /* Distance from bottom */
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+    </style>
+</head>
+<body>
+    
+        <div class="fixed-bottom">
+        <div class="buttons">
+            <a href="/map-login" class="btn login">Login</a>
+            <a href="/map-register" class="btn signup">Sign Up</a>
+        </div>
+        </div>
+   
+</body>
+</html>

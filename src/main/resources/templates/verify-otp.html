@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f9fa;
+        }
+
+        .verify-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .verify-container h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .verify-container p {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #2a6fc9;
+        }
+    </style>
+</head>
+<body>
+    <div class="verify-container">
+        <h2>Verify OTP</h2>
+        <p>Enter the 6-digit OTP sent to <span th:text="${email}"></span></p>
+
+        <!-- Error message display -->
+        <div th:if="${error}" class="error-message" style="margin-bottom: 1rem;">
+            <span th:text="${error}"></span>
+        </div>
+
+        <!-- OTP Verification Form -->
+        <form method="POST" action="/verify-otp">
+            <!-- Hidden email field -->
+            <input type="hidden" name="email" th:value="${email}">
+            
+            <div class="form-group">
+                <label for="otp">Enter OTP</label>
+                <input type="number" id="otp" name="otp" required 
+                       placeholder="6-digit code" min="100000" max="999999">
+                <div class="error-message" id="otpError"></div>
+            </div>
+            
+            <button type="submit" class="btn">Verify OTP</button>
+        </form>
+		<div style="margin-top: 1rem;">
+		    <p>Didn't receive OTP? <a th:href="@{/send-otp(email=${email})}">Resend OTP</a></p>
+		</div>
+    </div>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const otp = document.getElementById('otp').value;
+            const otpError = document.getElementById('otpError');
+            
+            // Reset error
+            otpError.textContent = '';
+            
+            // Validate OTP
+            if (!otp) {
+                e.preventDefault();
+                otpError.textContent = 'OTP is required';
+                return false;
+            }
+            
+            if (otp.length !== 6 || isNaN(otp)) {
+                e.preventDefault();
+                otpError.textContent = 'Please enter a valid 6-digit OTP';
+                return false;
+            }
+            
+            return true;
+        });
+    </script>
+</body>
+</html>
+</body>
+</html>
